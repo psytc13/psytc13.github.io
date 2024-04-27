@@ -8,11 +8,43 @@ const button = document.getElementById("peoplesubmit");
 async function peoplesubmit(){
     const tempname = document.getElementById("name").value;
     const templic = document.getElementById("license").value;
-    const { data, error } = await supabase
-    .from('People')
-    .select()
-    .ilike('Name','%'+tempname+'%'); 
-    console.log(data);
+    if(tempname && templic){
+        document.getElementById("message").innerHTML = "Error" ;
+        document.getElementById("output").innerHTML = "";
+    }
+    else if(tempname){
+        const { data, error } = await supabase
+        .from('People')
+        .select()
+        .ilike('Name','%'+tempname+'%');
+        if(data.length != 0){
+            for(let x = 0; x < data.length; x++) {
+                document.getElementById("message").innerHTML = "Search Successful" ;
+                document.getElementById("output").innerHTML += "Name: "+data[x].Name + "<br>" + "Address: " +data[x].Address+"<br>" + "DOB: " + data[x].DOB + "<br>" + "LicenseNumber: "+data[x].LicenseNumber + "<br>" + "ExpiryDate: " + data[x].ExpiryDate + "<br><br>";
+            }
+        }
+        else{
+            document.getElementById("message").innerHTML = "Not found" ;
+            document.getElementById("output").innerHTML = "";
+        }
+    }
+
+    else if(templic){
+        const { data, error } = await supabase
+        .from('People')
+        .select()
+        .ilike('LicenseNumber','%'+templic+'%');  
+        if(data.length != 0){
+            for(let x = 0; x < data.length; x++) {
+                document.getElementById("message").innerHTML = "Search Successful" ;
+                document.getElementById("output").innerHTML += "Name: "+data[x].Name + "<br>" + "Address: " +data[x].Address+"<br>" + "DOB: " + data[x].DOB + "<br>" + "LicenseNumber: "+data[x].LicenseNumber + "<br>" + "ExpiryDate: " + data[x].ExpiryDate + "<br><br>";
+            }
+        }
+        else{
+            document.getElementById("message").innerHTML = "Not found" ;
+            document.getElementById("output").innerHTML = "";
+        }
+    }
 }
 
 button.addEventListener("click", peoplesubmit);
