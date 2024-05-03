@@ -6,25 +6,31 @@ const supabase = createClient('https://rzeyacnujlqgcolnwrzn.supabase.co','eyJhbG
 const button2 = document.getElementById("vehiclesubmit");
 
 async function vehiclesubmit(){
-    const tempplate = document.getElementById("plate").value;
+    const tempplate = document.getElementById("rego").value;
     const { data, error } = await supabase
     .from('Vehicles')
     .select('*, People(Name)')
     .ilike('VehicleID','%'+tempplate+'%');
-    console.log(data);
     if(!(tempplate)){
         document.getElementById("message").innerHTML = "Error" ;
-        document.getElementById("output").innerHTML = "";
+        document.getElementById("results").innerHTML = "";
     }
     else if(data.length != 0){
+        document.getElementById("results").innerHTML = "";
         for(let x = 0; x < data.length; x++) {
-            document.getElementById("message").innerHTML = "Search Successful" ;
-            document.getElementById("output").innerHTML += "VehicleID: "+data[x].VehicleID + "<br>" + "Make: " +data[x].Make+"<br>" + "Model: " + data[x].Model + "<br>" + "Colour: "+data[x].Colour + "<br>" + "Name: " + data[x].People.Name + "<br><br>";
+            if(data[x].OwnerID == null){
+                document.getElementById("message").innerHTML = "Search successful" ;
+                document.getElementById("results").innerHTML += "<div>VehicleID: "+data[x].VehicleID + "<br>" + "Make: " +data[x].Make+"<br>" + "Model: " + data[x].Model + "<br>" + "Colour: "+data[x].Colour + "<br>" + "Name: No Owner " + "</div><br><br>";
+            }
+            else{
+                document.getElementById("message").innerHTML = "Search successful" ;
+                document.getElementById("results").innerHTML += "<div>VehicleID: "+data[x].VehicleID + "<br>" + "Make: " +data[x].Make+"<br>" + "Model: " + data[x].Model + "<br>" + "Colour: "+data[x].Colour + "<br>" + "Name: " + data[x].People.Name + "</div><br><br>";
+            }
         }
     }
     else{
-        document.getElementById("message").innerHTML = "Not found" ;
-        document.getElementById("output").innerHTML = "";
+        document.getElementById("message").innerHTML = "No result found" ;
+        document.getElementById("results").innerHTML = "";
     }
 }
 

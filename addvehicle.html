@@ -1,10 +1,10 @@
 <!doctype html>
-<html lang="en-US">
+<html lang="en">
 
 <head>
 <meta charset="utf-8" />
 <link rel="stylesheet" href="style.css" />
-<script src="addvehicle.js" defer></script>
+<script src="addvehicle.js" type = "module"></script>
 <title>Add Vehicle</title>
 </head>
 
@@ -19,13 +19,13 @@
 </header>
 
 <aside>
-    
+    <img src = "websiteimage.png">
 
 </aside>
 
 <main>
-    <label for="reg">Registration</label>
-    <input type="text" id="reg" name="reg"><br><br>
+    <label for="rego">Registration</label>
+    <input type="text" id="rego" name="rego"><br><br>
     <label for="make">Make</label>
     <input type="text" id="make" name="make"><br><br>
     <label for="model">Model</label>
@@ -34,7 +34,10 @@
     <input type="text" id="colour" name="colour"><br><br>
     <label for="owner">Owner</label>
     <input type="text" id="owner" name="owner"><br><br>
-    <button id="addsubmit">Submit</button>
+    <button id="addsubmit">Add vehicle</button>
+    <p id="message"></p>
+    <p id = "output"></p>
+    <p id = "results"></p>
 </main>
 
 <footer></footer>

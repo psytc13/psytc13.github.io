@@ -10,7 +10,7 @@ async function peoplesubmit(){
     const templic = document.getElementById("license").value;
     if(tempname && templic){
         document.getElementById("message").innerHTML = "Error" ;
-        document.getElementById("output").innerHTML = "";
+        document.getElementById("results").innerHTML = "";
     }
     else if(tempname){
         const { data, error } = await supabase
@@ -18,14 +18,15 @@ async function peoplesubmit(){
         .select()
         .ilike('Name','%'+tempname+'%');
         if(data.length != 0){
+            document.getElementById("results").innerHTML = "";
             for(let x = 0; x < data.length; x++) {
-                document.getElementById("message").innerHTML = "Search Successful" ;
-                document.getElementById("output").innerHTML += "Name: "+data[x].Name + "<br>" + "Address: " +data[x].Address+"<br>" + "DOB: " + data[x].DOB + "<br>" + "LicenseNumber: "+data[x].LicenseNumber + "<br>" + "ExpiryDate: " + data[x].ExpiryDate + "<br><br>";
+                document.getElementById("message").innerHTML = "Search successful" ;
+                document.getElementById("results").innerHTML += "<div>Name: "+data[x].Name + "<br>" + "Address: " +data[x].Address+"<br>" + "DOB: " + data[x].DOB + "<br>" + "LicenseNumber: "+data[x].LicenseNumber + "<br>" + "ExpiryDate: " + data[x].ExpiryDate + "</div><br><br>";
             }
         }
         else{
-            document.getElementById("message").innerHTML = "Not found" ;
-            document.getElementById("output").innerHTML = "";
+            document.getElementById("message").innerHTML = "No result found" ;
+            document.getElementById("results").innerHTML = "";
         }
     }
 
@@ -36,13 +37,13 @@ async function peoplesubmit(){
         .ilike('LicenseNumber','%'+templic+'%');  
         if(data.length != 0){
             for(let x = 0; x < data.length; x++) {
-                document.getElementById("message").innerHTML = "Search Successful" ;
-                document.getElementById("output").innerHTML += "Name: "+data[x].Name + "<br>" + "Address: " +data[x].Address+"<br>" + "DOB: " + data[x].DOB + "<br>" + "LicenseNumber: "+data[x].LicenseNumber + "<br>" + "ExpiryDate: " + data[x].ExpiryDate + "<br><br>";
+                document.getElementById("message").innerHTML = "Search successful" ;
+                document.getElementById("results").innerHTML += "<div>Name: "+data[x].Name + "<br>" + "Address: " +data[x].Address+"<br>" + "DOB: " + data[x].DOB + "<br>" + "LicenseNumber: "+data[x].LicenseNumber + "<br>" + "ExpiryDate: " + data[x].ExpiryDate + "</div><br><br>";
             }
         }
         else{
-            document.getElementById("message").innerHTML = "Not found" ;
-            document.getElementById("output").innerHTML = "";
+            document.getElementById("message").innerHTML = "No result found" ;
+            document.getElementById("results").innerHTML = "";
         }
     }
 }
