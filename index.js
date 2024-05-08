@@ -46,6 +46,10 @@ async function peoplesubmit(){
             document.getElementById("results").innerHTML = "";
         }
     }
+    else{
+        document.getElementById("message").innerHTML = "Error" ;
+        document.getElementById("results").innerHTML = "";
+    }
 }
 
 button.addEventListener("click", peoplesubmit);
