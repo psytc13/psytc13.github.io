@@ -36,6 +36,7 @@ async function peoplesubmit(){
         .select()
         .ilike('LicenseNumber','%'+templic+'%');  
         if(data.length != 0){
+            document.getElementById("results").innerHTML = "";
             for(let x = 0; x < data.length; x++) {
                 document.getElementById("message").innerHTML = "Search successful" ;
                 document.getElementById("results").innerHTML += "<div>Name: "+data[x].Name + "<br>" + "Address: " +data[x].Address+"<br>" + "DOB: " + data[x].DOB + "<br>" + "LicenseNumber: "+data[x].LicenseNumber + "<br>" + "ExpiryDate: " + data[x].ExpiryDate + "</div><br><br>";
