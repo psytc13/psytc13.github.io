@@ -1,0 +1,16 @@
+All Extra Work:
+
+Project link: https://github.com/psytc13/psytc13.github.io
+
+HTML:
+-The HTML fits most critera mentioned as well as passes the lighthouse test with a 100% accessibility score.
+However, one criteria that isn't achieved is the specific use of the grid layout, where instead I use a block.
+
+CSS:
+-The CSS meets all criteria and effot has been made to make the front-end as responsive as possible. For example, elements using size scaling.
+
+Javascript:
+-The website passes all playwright tests individually, except for the grid layout checker. Additional playright tests have also been created to test other database scenarios. These can be found in the extratests.spec.ts file (may be within a folder called tests).
+
+Database:
+-The database is functional and can work with all queries necessary. Additional playwright tests are in the mentioned file.
